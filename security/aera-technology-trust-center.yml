@@ -1,0 +1,56 @@
+generated: '2026-08-06'
+method: searched
+probe: true
+url: https://trustcenter.aeratechnology.com/
+platform: Sprinto
+certifications:
+- name: ISO 27001
+  claim: Certified
+- name: SOC 2
+  claim: Certified
+  artifact: 2026 SOC 2 Type 2 Report (access-gated document)
+- name: ISO 42001
+  claim: Certified
+  note: AI management system certification
+- name: GDPR
+  claim: Compliant
+- name: CPRA (formerly CCPA)
+  claim: Compliant
+documents:
+  access: gated
+  note: >-
+    Certificates and reports are listed but require "Request access" — ISO 27001
+    certificate, ISO 27001 report, 2026 SOC 2 Type 2 report, ISO 42001 certificate,
+    Enterprise Security Policy, Security and Privacy Policy, plus 4 more.
+  listed:
+  - Enterprise Security Policy
+  - Security and Privacy Policy
+  - 2026 SOC 2 Type 2 Report
+  - ISO27001 certificate
+  - ISO27001 report
+  - ISO 42001 Certificate
+controls_published: 27
+contact: support@aeratechnology.com
+responsible_disclosure: https://app.sprinto.com/rdp/view/cc144494-8eb2-4c06-ad55-671eeba8881f
+related:
+  security_privacy_page: https://www.aeratechnology.com/aera-security-privacy-documentation/
+  security_privacy_pdf: https://www.aeratechnology.com/wp-content/uploads/AeraSecurityandPrivacy.pdf
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://trustcenter.aeratechnology.com/
+    http_status: 200
+    note: >-
+      403 to a default curl user-agent; 200 with a browser user-agent. Certification
+      names were read from the server-rendered HTML of that 200 response.
+  - url: https://trustcenter.aeratechnology.com/compliance
+    http_status: 404
+  - url: https://www.aeratechnology.com/aera-security-privacy-documentation/
+    http_status: 200
+  keywords_observed:
+  - ISO 27001 Certified
+  - SOC 2 Certified
+  - ISO 42001 Certified
+  - GDPR Compliant
+  - CPRA (formerly CCPA) Compliant
+  - Responsible Disclosure Program

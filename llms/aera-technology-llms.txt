@@ -1,0 +1,60 @@
+# Aera Technology
+
+> Aera Technology is the Decision Intelligence company behind Aera Decision Cloud, an
+> enterprise platform that digitizes, augments and automates operational decision making
+> across supply chain, procurement, finance and commercial functions. This file is
+> maintained by API Evangelist, not by Aera Technology — Aera publishes no llms.txt of its
+> own (https://www.aeratechnology.com/llms.txt returns 404).
+
+## What is publicly callable
+
+Aera Decision Cloud's API reference is **not public**. https://docs.aeratechnology.com/ is a
+Document360 site that 302-redirects to Aera's identity provider
+(idp-dev.aeratechnology.com), so the product API contract requires a customer login. No
+OpenAPI, AsyncAPI, GraphQL SDL, Postman collection or JSON Schema is published anywhere we
+could find, and github.com/aeratechnology has zero public repositories.
+
+One machine surface is publicly discoverable: an **authenticated MCP server** on the
+corporate host.
+
+## APIs
+
+- [Aera Technology MCP Server](https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server): JSON-RPC Model Context Protocol endpoint on the corporate WordPress host. Anonymous `tools/list` returns HTTP 401 `mcp_unauthorized`; a bearer token with the `mcp` scope is required.
+
+## Discovery
+
+- [OAuth protected resource metadata](https://www.aeratechnology.com/.well-known/oauth-protected-resource): RFC 9728 — names the MCP resource and its authorization server.
+- [OAuth authorization server metadata](https://www.aeratechnology.com/.well-known/oauth-authorization-server): RFC 8414 — authorization_code + refresh_token, PKCE S256, public client, single `mcp` scope.
+
+## Product
+
+- [Aera Decision Cloud](https://www.aeratechnology.com/aera-decision-cloud/)
+- [Aera Skills](https://www.aeratechnology.com/aera-skills/)
+- [Decision Data Model](https://www.aeratechnology.com/decision-data-model/)
+- [Cortex AI/ML](https://www.aeratechnology.com/cortex-ai-ml/)
+- [Multi-Engine Orchestration](https://www.aeratechnology.com/multi-engine-orchestration/)
+- [Agentic Ambient Intelligence](https://www.aeratechnology.com/agentic-ambient-intelligence/)
+- [Data Workbench](https://www.aeratechnology.com/data-workbench/)
+- [Process Builder](https://www.aeratechnology.com/process-builder/)
+- [Decision Intelligence FAQ](https://www.aeratechnology.com/decision-intelligence-faq/)
+
+## Operations
+
+- [Status page](https://status.aeratechnology.com/): StatusHQ; production, UAT and CDEV environments in East US, East US2 and North Europe.
+- [Support portal](https://aeratechnology.atlassian.net/servicedesk/customer/portal/33/): Jira Service Management (customer login required).
+- [Community](https://community.aeratechnology.com/): public community forum.
+- [Support Policy and SLA (PDF)](https://www.aeratechnology.com/wp-content/uploads/Aera_Support_Policy_and_Service_Level_Agreement_0126.pdf)
+
+## Trust and legal
+
+- [Trust Center](https://trustcenter.aeratechnology.com/): Sprinto-hosted; ISO 27001 Certified, SOC 2 Certified, ISO 42001 Certified, GDPR Compliant, CPRA/CCPA Compliant.
+- [Responsible Disclosure Program](https://app.sprinto.com/rdp/view/cc144494-8eb2-4c06-ad55-671eeba8881f)
+- [Security and Privacy Documentation](https://www.aeratechnology.com/aera-security-privacy-documentation/)
+- [Terms and agreements](https://www.aeratechnology.com/terms/): Master Agreement, Developer Agreement, Evaluation Agreement, Agentic DI product-specific terms.
+
+## Content
+
+- [Resources](https://www.aeratechnology.com/resources/)
+- [Blog RSS](https://www.aeratechnology.com/feed/)
+- [Partners](https://www.aeratechnology.com/partners/)
+- [About](https://www.aeratechnology.com/about-us/)

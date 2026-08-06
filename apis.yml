@@ -1,18 +1,55 @@
 aid: aera-technology
 name: Aera Technology
-description: 'Aera Technology is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Aera Technology is the Decision Intelligence company behind Aera Decision
+  Cloud, an enterprise platform that digitizes, augments and automates operational
+  decision making across supply chain, procurement, finance and commercial functions.
+  The platform combines the Aera Decision Data Model, the Cortex AI/ML engine, multi-engine
+  orchestration and agentic ambient intelligence with packaged Aera Skills, and is
+  built and extended by customers through Aera Developer using low-code builders plus
+  SQL, Java, Python and R. Aera Decision Cloud runs as a multi-tenant SaaS across US
+  and EU regions; its developer documentation and API reference sit behind a customer
+  SSO login, so no public OpenAPI or developer portal is available. The corporate site
+  does publish an authenticated Model Context Protocol server discoverable through
+  RFC 8414 / RFC 9728 well-known metadata.'
+image: https://www.aeratechnology.com/wp-content/uploads/2025/11/aera-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/aera-technology/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-apis: []
+- Decision Intelligence
+- Artificial Intelligence
+- Enterprise Software
+- Supply Chain
+- Automation
+- Analytics
+- Agents
+apis:
+- name: Aera Technology MCP Server
+  description: 'An authenticated Model Context Protocol (MCP) endpoint served from
+    Aera Technology''s own corporate WordPress host. Anonymous discovery works: the
+    site publishes RFC 9728 protected-resource metadata and RFC 8414 authorization-server
+    metadata advertising an authorization_code + PKCE (S256) flow with a single "mcp"
+    scope. The tools/list method itself returns 401 mcp_unauthorized without a bearer
+    token, so the live tool schemas could not be introspected anonymously. This is
+    the corporate site''s MCP surface, not the Aera Decision Cloud product API.'
+  humanURL: https://www.aeratechnology.com/
+  baseURL: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - MCP
+  - Agents
+  properties:
+  - type: MCPServer
+    url: mcp/aera-technology-mcp.yml
+  - type: Authentication
+    url: authentication/aera-technology-authentication.yml
+  - type: OAuthScopes
+    url: scopes/aera-technology-scopes.yml
+  - type: ErrorCatalog
+    url: errors/aera-technology-problem-types.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +57,68 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/aera-technology_stock/
+  url: https://www.aeratechnology.com/
+- type: Blog
+  url: https://www.aeratechnology.com/resources/?category=blogs
+- type: BlogRSS
+  url: https://www.aeratechnology.com/feed/
+- type: Support
+  url: https://community.aeratechnology.com/
+- type: StatusPage
+  url: https://status.aeratechnology.com/
+- type: TermsOfService
+  url: https://www.aeratechnology.com/terms/
+- type: PrivacyPolicy
+  url: https://www.aeratechnology.com/aera-security-privacy-documentation/
+- type: TrustCenter
+  url: security/aera-technology-trust-center.yml
+- type: Compliance
+  url: https://trustcenter.aeratechnology.com/
+- type: Security
+  url: https://app.sprinto.com/rdp/view/cc144494-8eb2-4c06-ad55-671eeba8881f
+- type: Partners
+  url: https://www.aeratechnology.com/partners/
+- type: WellKnown
+  url: well-known/aera-technology-well-known.yml
+- type: LLMsTxt
+  url: llms/aera-technology-llms.txt
+- type: Lifecycle
+  url: lifecycle/aera-technology-lifecycle.yml
+- type: Conformance
+  url: conformance/aera-technology-conformance.yml
+- type: VulnerabilityDisclosure
+  url: security/aera-technology-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/aera-technology-domain-security.yml
+- type: MCPServer
+  url: mcp/aera-technology-mcp.yml
+- type: Authentication
+  url: authentication/aera-technology-authentication.yml
+- type: OAuthScopes
+  url: scopes/aera-technology-scopes.yml
+- type: ErrorCatalog
+  url: errors/aera-technology-problem-types.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    Aera Decision Cloud's Document360 documentation site at docs.aeratechnology.com
+    302-redirects to Aera's identity provider (idp-dev.aeratechnology.com), so the
+    product API reference and any spec require an active customer tenant; the only
+    publicly discoverable machine surface is an auth-gated MCP server on the
+    corporate WordPress host.
+  evidence:
+  - url: https://docs.aeratechnology.com/
+    status: 302
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+    status: 401
+  - url: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+    status: 200
+  - url: https://www.aeratechnology.com/openapi.json
+    status: 404
+  checked: '2026-08-06'

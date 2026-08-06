@@ -1,0 +1,47 @@
+generated: '2026-08-06'
+method: probed
+source: live JSON-RPC/REST probes of https://www.aeratechnology.com/wp-json/mcp/*
+format: wordpress-rest-error
+format_note: >-
+  NOT RFC 9457. The envelope is the WordPress REST error shape
+  {"code": string, "message": string, "data": {"status": int}} served as
+  application/json, not application/problem+json. No type URI, no instance, no
+  problem+json content type.
+envelope:
+  code: machine-readable error slug
+  message: human-readable message
+  data.status: HTTP status code, repeated inside the body
+scope_note: >-
+  Only errors actually observed anonymously are recorded. Aera publishes no public
+  error reference and no OpenAPI to derive 4xx/5xx responses from, so this catalog
+  is deliberately short rather than padded.
+problems:
+- status: 401
+  code: mcp_unauthorized
+  title: MCP authentication required.
+  observed_on: POST https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+  remediation: >-
+    Obtain a bearer token through the advertised OAuth 2.1 authorization_code +
+    PKCE (S256) flow at https://www.aeratechnology.com/oauth/authorize and present
+    it in the Authorization header with the "mcp" scope.
+- status: 401
+  code: rest_forbidden
+  title: Sorry, you are not allowed to do that.
+  observed_on: POST https://www.aeratechnology.com/wp-json/mcp/mcp-adapter-default-server
+  remediation: Authenticate to the WordPress REST API before calling this route.
+- status: 404
+  code: rest_no_route
+  title: No route was found matching the URL and request method.
+  observed_on: POST https://www.aeratechnology.com/wp-json/mcp/mcp
+  remediation: >-
+    Use one of the routes listed at https://www.aeratechnology.com/wp-json/mcp —
+    /mcp/mcp-oauth-server or /mcp/mcp-adapter-default-server.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp-adapter-default-server
+    http_status: 401
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp
+    http_status: 404

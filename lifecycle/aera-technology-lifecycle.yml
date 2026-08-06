@@ -1,0 +1,75 @@
+generated: '2026-08-06'
+method: searched
+source: https://www.aeratechnology.com/terms/
+status_page: https://status.aeratechnology.com/
+status_page_platform: StatusHQ
+status_page_components:
+  environments:
+  - PRODUCTION - East US
+  - PRODUCTION - East US2
+  - PRODUCTION - North Europe
+  - UAT - East US
+  - UAT - North Europe
+  - CDEV - East US
+  - CDEV - North Europe
+  retired:
+  - Production IRL
+  - Production US
+  - UAT IRL
+  - UAT US
+  services_per_environment:
+  - Platform Access
+  - Analytics
+  - Cognitive Workbench
+  - Cortex
+  - Data Workbench
+  - Discovery
+  - Skills & Integrations
+  - Other Features
+  note: >-
+    No RSS/Atom feed or status API is advertised on the page; it self-refreshes
+    every 60 seconds.
+sla:
+  url: https://www.aeratechnology.com/wp-content/uploads/Aera_Support_Policy_and_Service_Level_Agreement_0126.pdf
+  format: pdf
+  version: '0126'
+  uptime_target: null
+  uptime_target_note: >-
+    NOT RECORDED — the SLA is published only as a PDF whose text could not be
+    extracted reliably, so no availability percentage is asserted here.
+  support_portal: https://aeratechnology.atlassian.net/servicedesk/customer/portal/33/
+  support_portal_status: 200 (redirects to a customer login)
+  support_email: support@aeratechnology.com
+versioning:
+  scheme: null
+  note: >-
+    No public versioning policy. The Aera Decision Cloud reference lives behind a
+    customer SSO login at docs.aeratechnology.com, so no version scheme, release
+    train, or API version header is publicly documented.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: >-
+    No public deprecation policy and no evidence of RFC 8594 Sunset/Deprecation
+    header support. Not asserted either way.
+deprecated_operations: []
+agreements:
+- name: Aera Master Agreement
+  url: https://www.aeratechnology.com/wp-content/uploads/Aera_Master-Agreement_v0126.pdf
+- name: Aera Developer Agreement
+  url: https://www.aeratechnology.com/wp-content/uploads/AeraDeveloper.pdf
+- name: Aera Evaluation Agreement
+  url: https://www.aeratechnology.com/wp-content/uploads/AeraEvaluation.pdf
+- name: Agentic DI (Chat / Data Wizard) Product Specific Terms
+  url: https://www.aeratechnology.com/wp-content/uploads/Aera-Agentic-DI-Chat-or-Data-Wizard-Product-Specific-Terms_v0126.pdf
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://status.aeratechnology.com/
+    http_status: 200
+  - url: https://www.aeratechnology.com/terms/
+    http_status: 200
+  - url: https://www.aeratechnology.com/wp-content/uploads/Aera_Support_Policy_and_Service_Level_Agreement_0126.pdf
+    http_status: 200
+  - url: https://aeratechnology.atlassian.net/servicedesk/customer/portal/33/
+    http_status: 200

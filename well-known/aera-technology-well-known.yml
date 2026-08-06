@@ -1,0 +1,60 @@
+generated: '2026-08-06'
+method: probed
+source: live probes of /.well-known/* on Aera Technology hosts
+hosts:
+- host: https://www.aeratechnology.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    spec: RFC 8414
+    status: 200
+    note: 301 to the trailing-slash form, then 200 application/json
+    file: aera-technology-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    spec: RFC 9728
+    status: 200
+    note: 301 to the trailing-slash form, then 200 application/json
+    file: aera-technology-oauth-protected-resource.json
+  - path: /.well-known/security.txt
+    spec: RFC 9116
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    spec: RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    spec: A2A 1.0.0
+    status: 404
+  - path: /.well-known/agent.json
+    spec: A2A legacy
+    status: 404
+- host: https://idp.aeratechnology.com
+  note: >-
+    Aera's identity provider. Every /.well-known/* path answered 403 with an
+    application/xml body (S3-style access denied), so nothing was readable.
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+x-evidence:
+  fetched: '2026-08-06'
+  control_probe:
+    url: https://www.aeratechnology.com/.well-known/oauth-authorization-server-kinlanecontrol-zzz
+    status: 404
+    note: >-
+      Control path returned a 404 WordPress HTML page, confirming the two 200 JSON
+      responses above are real documents and not a soft-404 catch-all.
+findings:
+  oauth_metadata: true
+  security_txt: false
+  agent_card: false
+  api_catalog: false

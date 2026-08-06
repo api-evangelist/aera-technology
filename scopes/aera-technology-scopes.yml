@@ -1,0 +1,32 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+note: >-
+  Scopes as advertised by Aera Technology's own RFC 8414 authorization-server
+  metadata and RFC 9728 protected-resource metadata. Aera publishes no scopes /
+  permissions reference page, so this is the complete publicly observable scope
+  surface — a single coarse scope. Nothing is inferred.
+schemes:
+- name: mcp-oauth
+  source: well-known/aera-technology-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.aeratechnology.com/oauth/authorize
+    tokenUrl: https://www.aeratechnology.com/oauth/token
+scopes:
+- scope: mcp
+  description: >-
+    Access the Aera Technology MCP server at
+    /wp-json/mcp/mcp-oauth-server. Advertised in both scopes_supported lists; no
+    finer-grained or per-tool scopes are published.
+  flows: [authorizationCode]
+  sources:
+  - well-known/aera-technology-oauth-authorization-server.json
+  - well-known/aera-technology-oauth-protected-resource.json
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+    http_status: 200

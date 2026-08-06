@@ -1,0 +1,56 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+note: >-
+  Derived from the live RFC 8414 authorization-server metadata and RFC 9728
+  protected-resource metadata Aera Technology publishes on www.aeratechnology.com.
+  There is no public OpenAPI to derive securitySchemes from — the Aera Decision
+  Cloud reference is behind a customer SSO login — so this profile covers only the
+  publicly discoverable MCP authorization surface.
+summary:
+  types: [oauth2]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  pkce: S256
+  public_client: true
+schemes:
+- name: mcp-oauth
+  type: oauth2
+  issuer: https://www.aeratechnology.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.aeratechnology.com/oauth/authorize
+    tokenUrl: https://www.aeratechnology.com/oauth/token
+    revocationUrl: https://www.aeratechnology.com/oauth/revoke
+    refreshSupported: true
+    codeChallengeMethods: [S256]
+    scopes:
+      mcp: Access the Aera Technology MCP server
+  tokenEndpointAuthMethods: [none]
+  clientIdMetadataDocumentSupported: true
+  bearerMethods: [header]
+  sources:
+  - well-known/aera-technology-oauth-authorization-server.json
+  - well-known/aera-technology-oauth-protected-resource.json
+protected_resources:
+- resource: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+  authorization_servers: [https://www.aeratechnology.com]
+  scopes: [mcp]
+gated:
+- surface: Aera Decision Cloud product API
+  docs: https://docs.aeratechnology.com/
+  status: 302
+  note: >-
+    Redirects to idp-dev.aeratechnology.com (Aera's identity provider). The
+    Document360 documentation site requires a customer login, so the product API's
+    authentication model is not publicly documented and is deliberately NOT
+    described here.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+    http_status: 200
+  - url: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+    http_status: 200
+  - url: https://docs.aeratechnology.com/
+    http_status: 302

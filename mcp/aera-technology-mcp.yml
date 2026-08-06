@@ -1,0 +1,69 @@
+generated: '2026-08-06'
+method: probed
+source: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+status: published
+access: authenticated
+server:
+  name: aera-technology
+  transport: http
+  url: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+  host: www.aeratechnology.com
+  note: >-
+    Served from Aera Technology's corporate WordPress site via the WordPress MCP /
+    MCP Adapter REST namespace (/wp-json/mcp). This is the marketing-site MCP
+    surface, not the Aera Decision Cloud product API, whose documentation sits
+    behind a customer SSO login at docs.aeratechnology.com.
+discovery:
+  protected_resource: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+  authorization_server: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+  namespace_index: https://www.aeratechnology.com/wp-json/mcp
+authorization:
+  spec: RFC 9728 protected resource + RFC 8414 authorization server metadata
+  authorization_endpoint: https://www.aeratechnology.com/oauth/authorize
+  token_endpoint: https://www.aeratechnology.com/oauth/token
+  revocation_endpoint: https://www.aeratechnology.com/oauth/revoke
+  grant_types: [authorization_code, refresh_token]
+  code_challenge_methods: [S256]
+  bearer_methods: [header]
+  token_endpoint_auth_methods: [none]
+  client_id_metadata_document_supported: true
+  scopes: [mcp]
+endpoints:
+- route: /wp-json/mcp/mcp-oauth-server
+  auth: bearer (OAuth 2.1 authorization_code + PKCE)
+  tools_list_status: 401
+  tools_list_error: '{"code":"mcp_unauthorized","message":"MCP authentication required."}'
+- route: /wp-json/mcp/mcp-adapter-default-server
+  auth: WordPress REST authentication
+  tools_list_status: 401
+  tools_list_error: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that."}'
+tools: []
+tools_note: >-
+  NOT RECORDED — the live tool set is auth-gated. An anonymous JSON-RPC tools/list
+  against both routes returned HTTP 401, and Aera publishes no llms.txt or docs page
+  listing the tools, so no tool names or inputSchemas could be observed. Input
+  schemas require authenticated introspection with a bearer token issued through the
+  advertised authorization_code + PKCE flow. Nothing is inferred here.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+  - url: https://www.aeratechnology.com/.well-known/oauth-protected-resource
+    method: GET
+    http_status: 200
+    content_type: application/json
+  - url: https://www.aeratechnology.com/.well-known/oauth-authorization-server
+    method: GET
+    http_status: 200
+    content_type: application/json
+  - url: https://www.aeratechnology.com/wp-json/mcp
+    method: GET
+    http_status: 200
+    content_type: application/json
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp-oauth-server
+    method: POST tools/list
+    http_status: 401
+    content_type: application/json
+  - url: https://www.aeratechnology.com/wp-json/mcp/mcp-adapter-default-server
+    method: POST tools/list
+    http_status: 401
+    content_type: application/json

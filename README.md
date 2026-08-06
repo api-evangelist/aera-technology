@@ -42,5 +42,22 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Aera Technology is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/aera-technology_stock/
+Aera Technology is the Decision Intelligence company behind Aera Decision Cloud, an enterprise
+platform that digitizes, augments and automates operational decision making across supply chain,
+procurement, finance and commercial functions.
+
+**No public API contract.** Aera Decision Cloud's documentation site
+(https://docs.aeratechnology.com/) 302-redirects to Aera's identity provider, so the product API
+reference requires an active customer tenant. No OpenAPI, AsyncAPI, GraphQL SDL, Postman collection
+or JSON Schema is published publicly, and github.com/aeratechnology has zero public repositories.
+
+**What is publicly discoverable.** An authenticated Model Context Protocol server on the corporate
+host at `/wp-json/mcp/mcp-oauth-server`, advertised through RFC 9728 protected-resource metadata and
+RFC 8414 authorization-server metadata (authorization_code + PKCE S256, single `mcp` scope).
+Anonymous `tools/list` returns HTTP 401.
+
+- Website — https://www.aeratechnology.com/
+- Status — https://status.aeratechnology.com/
+- Trust Center — https://trustcenter.aeratechnology.com/ (ISO 27001, SOC 2, ISO 42001, GDPR, CPRA)
+- Terms and agreements — https://www.aeratechnology.com/terms/
+- Community — https://community.aeratechnology.com/
