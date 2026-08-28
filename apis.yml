@@ -11,6 +11,17 @@ description: 'Aera Technology is the Decision Intelligence company behind Aera D
   SSO login, so no public OpenAPI or developer portal is available. The corporate site
   does publish an authenticated Model Context Protocol server discoverable through
   RFC 8414 / RFC 9728 well-known metadata.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.aeratechnology.com/wp-content/uploads/2025/11/aera-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/aera-technology/refs/heads/main/apis.yml
 x-type: company
